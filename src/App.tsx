@@ -1,7 +1,9 @@
+import Home from "./components/home/Home";
+
 const App = () => {
   return (
     <div className="App">
-      Chronos
+      <Home />
     </div>
   );
 }
