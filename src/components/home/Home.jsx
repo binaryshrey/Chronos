@@ -4,6 +4,7 @@ import MarqueSection from "./MarqueSection";
 import Features from "./Features";
 import FeaturesDetailed from "./FeaturesDetailed";
 import CTA from "./CTA";
+import Footer from "./Footer";
 
 const Home = () => {
     return(
@@ -13,6 +14,7 @@ const Home = () => {
             <Features />
             <FeaturesDetailed />
             <CTA />
+            <Footer />
         </>
     )
 }
