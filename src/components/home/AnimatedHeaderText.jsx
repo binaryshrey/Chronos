@@ -1,6 +1,5 @@
 import { ChevronRight } from "lucide-react";
 
-import { cn } from "../../lib/utils";
 import AnimatedGradientText from "../../lib/animated-gradient-text";
 function AnimatedHeaderText() {
   return (

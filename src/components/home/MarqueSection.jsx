@@ -12,28 +12,31 @@ import vercel from "../../assets/vercel.svg"
 
 
 
-
-
-
 const MarqueSection = () => {
+
+    const content = (val) =>
+    <Marquee gradient gradientColor="white" gradientWidth={val}>
+        <img src={js} alt="react" class="mr-12 h-8"/>
+        <img src={ts} alt="react"  class="mr-12 h-8"/>
+        <img src={py} alt="react"  class="mr-12 h-8"/>
+        <img src={react} alt="react"  class="mr-12 h-8"/>
+        <img src={tailwind} alt="react"  class="mr-12 h-8"/>
+        <img src={mui} alt="react"  class="mr-12 h-8"/>
+        <img src={supabase} alt="react"  class="mr-12 h-8"/>
+        <img src={fastapi} alt="react"  class="mr-12 h-8"/>
+        <img src={vercel} alt="react"  class="mr-12 h-8"/>
+    </Marquee>
+
     return (
         <>
             <div class="flex justify-center mb-12 mt-12">
                 <h4 class="text-center text-2xl"> <span class="text-indigo-600 font-semibold">Powered by</span> state of the art frameworks and libraries</h4>
             </div>
-            <div>
-                <Marquee gradient gradientColor="white" gradientWidth={600}>
-                    <img src={js} alt="react" class="mr-12 h-8"/>
-                    <img src={ts} alt="react"  class="mr-12 h-8"/>
-                    <img src={py} alt="react"  class="mr-12 h-8"/>
-                    <img src={react} alt="react"  class="mr-12 h-8"/>
-                    <img src={tailwind} alt="react"  class="mr-12 h-8"/>
-                    <img src={mui} alt="react"  class="mr-12 h-8"/>
-                    <img src={supabase} alt="react"  class="mr-12 h-8"/>
-                    <img src={fastapi} alt="react"  class="mr-12 h-8"/>
-                    <img src={vercel} alt="react"  class="mr-12 h-8"/>
-
-                </Marquee>
+            <div class="lg:block hidden"> 
+                   {content(600)}
+            </div>
+            <div class="lg:hidden block"> 
+                   {content(100)}
             </div>
         </>
     )

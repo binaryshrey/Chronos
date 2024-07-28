@@ -18,12 +18,12 @@ const CTA = () => {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
           
           <div className="text-center">
-            <h4 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h4 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Boost your productivity.
             </h4>
-            <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h4 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
                 Start using our app today.
-            </h1>
+            </h4>
             <p className="mt-6 text-lg leading-8 text-gray-600">
               Start in three steps, track issues easily, and adopt in days, not weeks.
             </p>

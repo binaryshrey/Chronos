@@ -4,14 +4,17 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "../../assets/logo-dark.svg";
 import AnimatedHeaderText from './AnimatedHeaderText';
 
-const navigation = [
-  { name: 'Github', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Contact', href: '#' },
-]
+  const handleScroll = () => {
+    const element = document.getElementById('features-section');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
 const HeroSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+
 
   return (
     <div className="isolate bg-white">
@@ -58,11 +61,11 @@ const HeroSection = () => {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <a key={item.name} href={item.href} className="text-sm font-semibold leading-6 text-gray-900">
-                {item.name}
-              </a>
-            ))}
+  
+            <a href='https://github.com/binaryshrey/Chronos' className='text-sm font-semibold leading-6 text-gray-900'>Github</a>
+            <a onClick={handleScroll} className='text-sm font-semibold leading-6 text-gray-900 cursor-pointer'>Features</a>
+            <a href='https://in.linkedin.com/in/shreyanshsaurabh' className='text-sm font-semibold leading-6 text-gray-900'>Contact</a>
+
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <a href="#" className="text-sm font-semibold leading-6 text-gray-900">
@@ -93,15 +96,11 @@ const HeroSection = () => {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+                  
+                  <a href='https://github.com/binaryshrey/Chronos' className='-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10'>Github</a>
+                  <a onClick={handleScroll} className='-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10 cursor-pointer'>Features</a>
+                  <a href='https://in.linkedin.com/in/shreyanshsaurabh' className='-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10'>Contact</a>
+
                 </div>
                 <div className="py-6">
                   <a
@@ -140,7 +139,7 @@ const HeroSection = () => {
                 >
                   Get started
                 </a>
-                <a href="#" className="text-base font-semibold leading-7 text-gray-900">
+                <a href="https://github.com/binaryshrey/Chronos" className="text-base font-semibold leading-7 text-gray-900">
                   Learn more <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -159,6 +158,7 @@ const HeroSection = () => {
           </div>
         </div>
       </main>
+      <div id='features-section'></div>
     </div>
   )
 }
