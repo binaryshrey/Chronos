@@ -3,6 +3,7 @@ import HeroSection from "./HeroSection";
 import MarqueSection from "./MarqueSection";
 import Features from "./Features";
 import FeaturesDetailed from "./FeaturesDetailed";
+import CTA from "./CTA";
 
 const Home = () => {
     return(
@@ -11,6 +12,7 @@ const Home = () => {
             <MarqueSection />
             <Features />
             <FeaturesDetailed />
+            <CTA />
         </>
     )
 }
