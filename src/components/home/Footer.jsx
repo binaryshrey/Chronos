@@ -6,7 +6,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const navigation = [
   { name: 'LinkedIn', href: 'https://in.linkedin.com/in/shreyanshsaurabh' },
   { name: 'Github', href: 'https://github.com/binaryshrey/Chronos' },
-  { name: 'Public', href: 'https://github.com/binaryshrey/Chronos' },
+  { name: 'Public', href: 'https://chronos-inc.vercel.app/' },
 
 ]
 
