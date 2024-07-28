@@ -18,11 +18,11 @@ import vercel from "../../assets/vercel.svg"
 const MarqueSection = () => {
     return (
         <>
-            <div class="flex justify-center mb-12 mt-16">
+            <div class="flex justify-center mb-12 mt-12">
                 <h4 class="text-center text-2xl"> <span class="text-indigo-600 font-semibold">Powered by</span> state of the art frameworks and libraries</h4>
             </div>
             <div>
-                <Marquee gradient gradientColor="white" gradientWidth={64}>
+                <Marquee gradient gradientColor="white" gradientWidth={600}>
                     <img src={js} alt="react" class="mr-12 h-8"/>
                     <img src={ts} alt="react"  class="mr-12 h-8"/>
                     <img src={py} alt="react"  class="mr-12 h-8"/>
