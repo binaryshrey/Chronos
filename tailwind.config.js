@@ -15,6 +15,16 @@ module.exports = {
         },
         fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        animation: {
+          gradient: "gradient 8s linear infinite",
+        },
+        keyframes: {
+          gradient: {
+            to: {
+              backgroundPosition: "var(--bg-size) 0",
+            },
+          },
+        },
       },
       },
     },

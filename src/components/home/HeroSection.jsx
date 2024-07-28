@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import logo from "../../assets/logo-dark.svg";
+import AnimatedHeaderText from './AnimatedHeaderText';
 
 const navigation = [
   { name: 'Github', href: '#' },
@@ -119,6 +120,7 @@ const HeroSection = () => {
         <div className="relative py-24 sm:py-32 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
+                <AnimatedHeaderText />
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                 Project management and
               </h1>
