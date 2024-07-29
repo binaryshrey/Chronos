@@ -1,4 +1,4 @@
-import sample from "../../assets/sample.png"
+import loginBanner from "../../assets/login-banner.png"
 import logo from "../../assets/logo-dark.svg"
 import login from "../../assets/login.svg"
 import google from "../../assets/google.svg"
@@ -74,7 +74,7 @@ const Login = () => {
 
     </div>
     <div className="hidden lg:flex flex-1 h-screen">
-        <img src={sample} alt="Sign IN" className="h-full w-full object-cover" />
+        <img src={loginBanner} alt="Sign IN" className="h-full w-full object-cover" />
     </div>
     
     </div>
