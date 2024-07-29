@@ -1,6 +1,6 @@
 import sample from "../../assets/sample.png"
 import logo from "../../assets/logo-dark.svg"
-import login from "../../assets/login.svg"
+import SignUp from "../../assets/SignUp.svg"
 import google from "../../assets/google.svg"
 import apple from "../../assets/apple.svg"
 import fb from "../../assets/fb.svg"
@@ -9,7 +9,7 @@ import github from "../../assets/github.svg"
 import { Link } from "react-router-dom"
 
 
-const Login = () => {
+const Register = () => {
   return (
     <div className="flex">
         <div className="flex-1 h-screen">
@@ -23,8 +23,8 @@ const Login = () => {
 
                 <div class="flex-1 h-screen flex flex-col">
                     <div className="flex items-center justify-center flex-col mt-8">
-                        <img src={login} alt="Login"  />
-                        <p className=" text-2xl mb-12 mt-4">Welcome Back.</p>
+                        <img src={SignUp} alt="SignUp"  />
+                        <p className=" text-2xl mb-12 mt-4">Join Chronos.</p>
                     </div>
 
 
@@ -33,33 +33,33 @@ const Login = () => {
                 <div className="bg-white flex flex-col items-center justify-center p-8 space-y-2 items-center  ">                    
                     <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                         <img src={google} alt="Google" className="h-6 w-6 mr-4" />
-                        Sign in with Google
+                        Sign Up with Google
                     </button>
 
                     <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-9 py-2.5 text-center inline-flex items-center border">
                         <img src={apple} alt="apple" className="h-6 w-6 mr-4" />
-                        Sign in with Apple
+                        Sign Up with Apple
                     </button> 
 
                     <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-6 py-2.5 text-center inline-flex items-center border">
                         <img src={fb} alt="fb" className="h-6 w-6 mr-4" />
-                        Sign in with Facebook
+                        Sign Up with Facebook
                     </button>
 
                     <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                         <img src={twitter} alt="twitter" className="h-6 w-6 mr-4" />
-                        Sign in with Twitter
+                        Sign Up with Twitter
                     </button>
 
                     <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                         <img src={github} alt="github" className="h-6 w-6 mr-4" />
-                        Sign in with Github
+                        Sign Up with Github
                     </button>
                 </div>
 
 
                 <div className="m-12 flex  justify-center">
-                    <p> Don't have an account? <Link to='/signup'><span>Create one.</span></Link></p>
+                    <p> Already have an account? <Link to='/login'><span>Login</span></Link></p>
                 </div>
             </div>
 
@@ -74,7 +74,7 @@ const Login = () => {
 
     </div>
     <div className="hidden lg:flex flex-1 h-screen">
-        <img src={sample} alt="Sign IN" className="h-full w-full object-cover" />
+        <img src={sample} alt="Sign UP" className="h-full w-full object-cover" />
     </div>
     
     </div>
@@ -82,4 +82,4 @@ const Login = () => {
 }
 
 
-export default Login
+export default Register
