@@ -59,7 +59,7 @@ const Register = () => {
 
 
                 <div className="m-12 flex  justify-center">
-                    <p> Already have an account? <Link to='/login'><span>Login</span></Link></p>
+                    <p> Already have an account? <Link to='/login'><span>Login.</span></Link></p>
                 </div>
             </div>
 
