@@ -4,14 +4,14 @@ import PageNotFound from './components/not-found/PageNotFound';
 import Register from './components/signup/Register';
 import Success from './components/Success';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AuthProvider } from './hooks/Auth';
+import { AuthContextProvider } from './hooks/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <AuthProvider>
+        <AuthContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -26,7 +26,7 @@ const App = () => {
             />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
-        </AuthProvider>
+        </AuthContextProvider>
       </BrowserRouter>
     </div>
   );

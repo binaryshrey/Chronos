@@ -10,8 +10,27 @@ import { Link } from 'react-router-dom';
 import * as React from 'react';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import { UserAuth } from '../../hooks/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  const { googleSignIn, user } = UserAuth();
+  const navigate = useNavigate();
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(() => {
+    if (user != null) {
+      navigate('/success');
+    }
+  }, [user]);
+
   const [openSnack, setOpenSnack] = React.useState(false);
   const handleSnackClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -34,34 +53,34 @@ const Register = () => {
             </Link>
           </div>
 
-          <div class="flex-1 h-screen flex flex-col">
+          <div className="flex-1 h-screen flex flex-col">
             <div className="flex items-center justify-center flex-col mt-8">
               <img src={SignUp} alt="SignUp" />
               <p className=" text-2xl mb-12 mt-4">Join Chronos.</p>
             </div>
 
             <div className="bg-white flex flex-col items-center justify-center p-8 space-y-2 items-center  ">
-              <button type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+              <button onClick={handleGoogleSignIn} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                 <img src={google} alt="Google" className="h-6 w-6 mr-4" />
                 Sign Up with Google
               </button>
 
-              <button onClick={handleNoLogin} type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-9 py-2.5 text-center inline-flex items-center border">
+              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-9 py-2.5 text-center inline-flex items-center border">
                 <img src={apple} alt="apple" className="h-6 w-6 mr-4" />
                 Sign Up with Apple
               </button>
 
-              <button onClick={handleNoLogin} type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-6 py-2.5 text-center inline-flex items-center border">
+              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-6 py-2.5 text-center inline-flex items-center border">
                 <img src={fb} alt="fb" className="h-6 w-6 mr-4" />
                 Sign Up with Facebook
               </button>
 
-              <button onClick={handleNoLogin} type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                 <img src={twitter} alt="twitter" className="h-6 w-6 mr-4" />
                 Sign Up with Twitter
               </button>
 
-              <button onClick={handleNoLogin} type="button" class="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                 <img src={github} alt="github" className="h-6 w-6 mr-4" />
                 Sign Up with Github
               </button>
@@ -78,7 +97,7 @@ const Register = () => {
             </div>
           </div>
 
-          <div class="flex-none">
+          <div className="flex-none">
             <div className="text-sm font-medium text-muted-foreground opacity-70 m-4">&copy; 2024 Chronos Inc.</div>
           </div>
         </div>
