@@ -8,19 +8,21 @@ import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { UserAuth } from '../../hooks/AuthContext';
 import { Link } from 'react-router-dom';
 
-const navigation = [
-  { name: 'Kanban Board', href: '/dashboard', icon: HomeRoundedIcon, current: true },
-  { name: 'Reports', href: '/reports', icon: AssessmentRoundedIcon, current: false },
-  { name: 'Settings', href: '/settings', icon: SettingsRoundedIcon, current: false },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dashboard = ({ Component }) => {
+const Dashboard = ({ Component, board, reports, settings }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { googleSignIn, user } = UserAuth();
+
+  console.log(board, reports, settings);
+
+  const navigation = [
+    { name: 'Kanban Board', href: '/dashboard', icon: HomeRoundedIcon, current: board },
+    { name: 'Reports', href: '/reports', icon: AssessmentRoundedIcon, current: reports },
+    { name: 'Settings', href: '/settings', icon: SettingsRoundedIcon, current: settings },
+  ];
 
   return (
     <>

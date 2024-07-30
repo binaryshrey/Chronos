@@ -8,6 +8,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/dashboard/Dashboard';
 import KanbanBoard from './components/dashboard/KanbanBoard';
 import Profile from './components/dashboard/Profile';
+import Reports from './components/dashboard/Reports';
+import Settings from './components/dashboard/Settings';
 
 const App = () => {
   return (
@@ -22,7 +24,7 @@ const App = () => {
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <Dashboard Component={KanbanBoard} />
+                  <Dashboard Component={KanbanBoard} board={true} reports={false} settings={false} />
                 </ProtectedRoute>
               }
             />
@@ -30,7 +32,23 @@ const App = () => {
               path="/profile"
               element={
                 <ProtectedRoute>
-                  <Dashboard Component={Profile} />
+                  <Dashboard Component={Profile} board={false} reports={false} settings={false} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/reports"
+              element={
+                <ProtectedRoute>
+                  <Dashboard Component={Reports} board={false} reports={true} settings={false} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <Dashboard Component={Settings} board={false} reports={false} settings={true} />
                 </ProtectedRoute>
               }
             />
