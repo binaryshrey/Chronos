@@ -15,12 +15,20 @@ import { useNavigate } from 'react-router-dom';
 import { saveUserDataIfNewUser } from '../../utils/utils';
 
 const Register = () => {
-  const { googleSignIn, user } = UserAuth();
+  const { googleSignIn, githubSignIn, user } = UserAuth();
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
     try {
       await googleSignIn();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGithubSignIn = async () => {
+    try {
+      await githubSignIn();
     } catch (error) {
       console.log(error);
     }
@@ -68,14 +76,14 @@ const Register = () => {
                 Sign Up with Google
               </button>
 
+              <button onClick={handleGithubSignIn} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+                <img src={github} alt="github" className="h-6 w-6 mr-4" />
+                Sign Up with Github
+              </button>
+
               <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-9 py-2.5 text-center inline-flex items-center border">
                 <img src={apple} alt="apple" className="h-6 w-6 mr-4" />
                 Sign Up with Apple
-              </button>
-
-              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-6 py-2.5 text-center inline-flex items-center border">
-                <img src={fb} alt="fb" className="h-6 w-6 mr-4" />
-                Sign Up with Facebook
               </button>
 
               <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
@@ -83,9 +91,9 @@ const Register = () => {
                 Sign Up with Twitter
               </button>
 
-              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
-                <img src={github} alt="github" className="h-6 w-6 mr-4" />
-                Sign Up with Github
+              <button onClick={handleNoLogin} type="button" className="text-black  focus:ring-4 font-medium rounded-full text-sm px-6 py-2.5 text-center inline-flex items-center border">
+                <img src={fb} alt="fb" className="h-6 w-6 mr-4" />
+                Sign Up with Facebook
               </button>
             </div>
 

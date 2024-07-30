@@ -1,5 +1,5 @@
 import { useContext, createContext, useEffect, useState } from 'react';
-import { GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithRedirect, signOut, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../components/Firebase';
 
 const AuthContext = createContext();
@@ -13,6 +13,11 @@ export const AuthContextProvider = ({ children }) => {
     //signInWithRedirect(auth, provider);
   };
 
+  const githubSignIn = () => {
+    const provider = new GithubAuthProvider();
+    signInWithPopup(auth, provider);
+  };
+
   const logOut = () => {
     signOut(auth);
   };
@@ -20,13 +25,14 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      console.log(currentUser);
     });
     return () => {
       unsubscribe();
     };
   }, []);
 
-  return <AuthContext.Provider value={{ googleSignIn, logOut, user }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ googleSignIn, githubSignIn, logOut, user }}>{children}</AuthContext.Provider>;
 };
 
 export const UserAuth = () => {
