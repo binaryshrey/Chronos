@@ -29,6 +29,7 @@ const Login = () => {
   React.useEffect(() => {
     if (user != null) {
       saveUserDataIfNewUser(user);
+      localStorage.setItem('email', JSON.stringify(user.email));
       navigate('/dashboard');
     }
   }, [user]);

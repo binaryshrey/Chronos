@@ -6,11 +6,19 @@ import { queryTasks } from '../../utils/utils';
 
 const KanbanBoard = () => {
   const { googleSignIn, user } = UserAuth();
-  const [taskData, setTaskData] = React.useState([]);
+
+  const storedTasks = localStorage.getItem('tasks');
+  const initialTasks = storedTasks ? JSON.parse(storedTasks) : [];
+
+  const [taskData, setTaskData] = React.useState(initialTasks);
 
   const getTasks = async () => {
     let allTasks = await queryTasks(user);
-    setTaskData(allTasks);
+    if (allTasks === undefined) {
+      setTaskData(initialTasks);
+    } else {
+      setTaskData(allTasks);
+    }
   };
 
   React.useEffect(() => {
@@ -33,10 +41,24 @@ const KanbanBoard = () => {
     return () => observer.disconnect();
   }, []);
 
+  const dataSetChanged = (change) => {
+    if (change.requestType === 'cardChanged') {
+      const updatedTasks = taskData.map((task) => {
+        if (task.RankId === change.changedRecords.RankId) {
+          return { ...task, ...change.data };
+        }
+        return task;
+      });
+      console.log(updatedTasks);
+      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+      setTaskData(updatedTasks);
+    }
+  };
+
   return (
     <div>
       <div className="App">
-        <KanbanComponent id="kanban" keyField="Status" dataSource={taskData} cardSettings={{ contentField: 'Summary', headerField: 'Id' }}>
+        <KanbanComponent id="kanban" keyField="Status" enablePersistence={true} dataSource={taskData} dataSourceChanged={dataSetChanged} cardSettings={{ contentField: 'Summary', headerField: 'Id' }}>
           <ColumnsDirective>
             <ColumnDirective headerText="To Do" keyField="Open" />
             <ColumnDirective headerText="In Progress" keyField="InProgress" />

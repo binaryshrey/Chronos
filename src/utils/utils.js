@@ -76,6 +76,7 @@ export const queryTasks = async (user) => {
         })
         
         if(res.length !== 0){
+            localStorage.setItem('tasks', JSON.stringify(res[0].tasks));
             return res[0].tasks
         }
 

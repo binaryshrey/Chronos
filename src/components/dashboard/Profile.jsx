@@ -23,6 +23,7 @@ const Profile = () => {
           </div>
           <div class="mt-16 flex flex-col items-center">
             <p class="text-base font-semibold text-gray-600">{user.displayName}</p>
+            <p class="text-base font-normal text-gray-600">{user.email}</p>
             <p class="text-base font-semibold text-gray-600 mt-20 cursor-pointer" onClick={handleSignOut}>
               Log Out
             </p>
