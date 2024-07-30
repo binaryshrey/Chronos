@@ -1,6 +1,6 @@
 # Chronos ![GitHub deployments](https://img.shields.io/github/deployments/binaryshrey/chronos/production?style=flat&logo=vercel&label=vercel)
 
-A minimalistic Kanban board app : project management and issue tracking for everyone - [View](https://chronos-inc.vercel.app/)
+A minimalistic kanban board app : project management and issue tracking for everyone - [View](https://chronos-inc.vercel.app/)
 
 ![Banner](https://raw.githubusercontent.com/binaryshrey/Chronos/main/chronos-product.png)
 
@@ -13,7 +13,8 @@ npm i
 npm run start
 ```
 
-Create a .env file for Firebase
+#### Firebase configs
+- Create a .env file for Firebase
 ```
 REACT_APP_FIREBASE_API_KEY=**********
 REACT_APP_FIREBASE_AUTHDOMAIN=**********.firebaseapp.com
@@ -24,8 +25,28 @@ REACT_APP_FIREBASE_APPID=**********
 REACT_APP_FIREBASE_MEASUREMENTID=**********
 ```
 
+- Include Google & Github Auth under Firebase Authentication
+- Include Firebase-Firestore with below prod db-rule:
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{uid} {
+      allow create: if request.auth != null;
+      allow read;
+      allow update, delete: if request.auth != null && request.auth.uid == uid;
+    	
+    }
+    match /tasks/{uid} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if request.auth != null && request.auth.uid == uid;
+    }
+  }
+}
+```
 
-Development server runs at `http://localhost:3000`.
+
+Development server runs at `http://localhost:3000`
 
 
 
