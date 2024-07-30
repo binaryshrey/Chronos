@@ -8,7 +8,7 @@ A minimalistic Kanban board app : project management and issue tracking for ever
 
 ```
 git clone https://github.com/binaryshrey/Chronos.git
-cd Portfolio
+cd Chronos
 npm i
 npm run start
 ```
