@@ -30,7 +30,7 @@ const MarqueSection = () => {
       <div className="flex justify-center mb-12 mt-12">
         <h4 className="text-center text-2xl">
           {' '}
-          <span className="text-indigo-600 font-semibold">Powered by</span> state of the art frameworks and libraries
+          <span className="text-violet-600 font-semibold">Powered by</span> state of the art frameworks and libraries
         </h4>
       </div>
       <div className="lg:block hidden">{content(600)}</div>
