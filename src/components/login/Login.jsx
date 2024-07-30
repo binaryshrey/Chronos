@@ -12,6 +12,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { saveUserDataIfNewUser } from '../../utils/utils';
 
 const Login = () => {
   const { googleSignIn, user } = UserAuth();
@@ -27,7 +28,9 @@ const Login = () => {
 
   React.useEffect(() => {
     if (user != null) {
-      navigate('/success');
+      saveUserDataIfNewUser(user);
+      localStorage.setItem('email', JSON.stringify(user.email));
+      navigate('/dashboard');
     }
   }, [user]);
 
