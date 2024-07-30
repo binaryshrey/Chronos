@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './hooks/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Dashboard from './components/dashboard/Dashboard';
+import KanbanBoard from './components/dashboard/KanbanBoard';
+import Profile from './components/dashboard/Profile';
 
 const App = () => {
   return (
@@ -20,7 +22,15 @@ const App = () => {
               path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <Dashboard Component={KanbanBoard} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Dashboard Component={Profile} />
                 </ProtectedRoute>
               }
             />

@@ -4,10 +4,9 @@ import logo from '../../assets/logo-dark.svg';
 import { Bars3Icon, CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
-import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import { UserAuth } from '../../hooks/AuthContext';
-import KanbanBoard from './KanbanBoard';
+import { Link } from 'react-router-dom';
 
 const navigation = [
   { name: 'Kanban Board', href: '/dashboard', icon: HomeRoundedIcon, current: true },
@@ -19,7 +18,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Dashboard = () => {
+const Dashboard = ({ Component }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { googleSignIn, user } = UserAuth();
 
@@ -104,7 +103,9 @@ const Dashboard = () => {
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{user.displayName}</p>
-                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                    <Link to="/profile">
+                      <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
+                    </Link>
                   </div>
                 </div>
               </a>
@@ -122,10 +123,10 @@ const Dashboard = () => {
             <div className="py-6">
               <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 <div className="py-4 hidden lg:block">
-                  <KanbanBoard />
+                  <Component />
                 </div>
                 <div className="py-2 overflow-y-auto lg:hidden">
-                  <KanbanBoard />
+                  <Component />
                 </div>
               </div>
             </div>
