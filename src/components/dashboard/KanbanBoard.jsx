@@ -65,7 +65,6 @@ const KanbanBoard = () => {
         }
         return task;
       });
-      console.log(updatedTasks);
       localStorage.setItem('tasks', JSON.stringify(updatedTasks));
       setTaskData(updatedTasks);
     }

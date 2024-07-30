@@ -51,7 +51,7 @@ export const saveUserDataIfNewUser = async (user) => {
             onboarded : false,
             tasks: tasks,
         }, { merge: true });
-        console.log('New user data saved to Firestore.');
+        localStorage.setItem('tasks', JSON.stringify(tasks));
         }
     }
     catch (error) {
