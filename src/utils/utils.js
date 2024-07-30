@@ -60,3 +60,31 @@ export const saveUserDataIfNewUser = async (user) => {
   };
 
 
+export const queryTasks = async (user) => {
+
+    try{
+
+        const collection_ref = collection(db, 'users')
+        const querySnapshot = query(collection_ref, where("email", "==", user.email))
+        const doc_refs = await getDocs(querySnapshot);
+        const res = []
+
+        doc_refs.forEach(task => {
+            res.push({
+                ...task.data()
+            })
+        })
+        
+        if(res.length !== 0){
+            return res[0].tasks
+        }
+
+        
+    }
+    catch (error) {
+      console.error('Tasks data:', error);
+    }
+  }; 
+
+
+
