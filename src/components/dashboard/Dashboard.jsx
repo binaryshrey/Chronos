@@ -1,7 +1,7 @@
 import React from 'react';
-import { UserAuth } from '../hooks/AuthContext';
+import { UserAuth } from '../../hooks/AuthContext';
 
-const Success = () => {
+const Dashboard = () => {
   const { logOut, user } = UserAuth();
 
   const handleSignOut = async () => {
@@ -25,4 +25,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default Dashboard;

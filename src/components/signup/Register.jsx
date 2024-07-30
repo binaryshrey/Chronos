@@ -27,7 +27,7 @@ const Register = () => {
 
   React.useEffect(() => {
     if (user != null) {
-      navigate('/success');
+      navigate('/dashboard');
     }
   }, [user]);
 
