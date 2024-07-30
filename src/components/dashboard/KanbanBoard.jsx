@@ -13,7 +13,6 @@ const KanbanBoard = () => {
   const [taskData, setTaskData] = React.useState(initialTasks);
 
   const getTasks = async () => {
-    console.log(user);
     let allTasks = await queryTasks(user);
     if (allTasks === undefined) {
       setTaskData(initialTasks);
@@ -66,7 +65,6 @@ const KanbanBoard = () => {
         }
         return task;
       });
-      console.log(updatedTasks);
       localStorage.setItem('tasks', JSON.stringify(updatedTasks));
       setTaskData(updatedTasks);
     }

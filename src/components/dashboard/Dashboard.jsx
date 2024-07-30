@@ -16,8 +16,6 @@ const Dashboard = ({ Component, board, reports, settings }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const { googleSignIn, user } = UserAuth();
 
-  console.log(board, reports, settings);
-
   const navigation = [
     { name: 'Kanban Board', href: '/dashboard', icon: HomeRoundedIcon, current: board },
     { name: 'Reports', href: '/reports', icon: AssessmentRoundedIcon, current: reports },
@@ -98,19 +96,17 @@ const Dashboard = ({ Component, board, reports, settings }) => {
             </div>
 
             <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-              <a href="#" className="group block w-full flex-shrink-0">
+              <Link to="/profile" className="group block w-full flex-shrink-0">
                 <div className="flex items-center">
                   <div>
                     <img className="inline-block h-9 w-9 rounded-full" src={user.photoURL} alt="" />
                   </div>
                   <div className="ml-3">
                     <p className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{user.displayName}</p>
-                    <Link to="/profile">
-                      <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
-                    </Link>
+                    <p className="text-xs font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

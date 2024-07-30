@@ -22,7 +22,7 @@ const Register = () => {
     try {
       await googleSignIn();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -30,7 +30,7 @@ const Register = () => {
     try {
       await githubSignIn();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

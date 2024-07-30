@@ -22,7 +22,7 @@ const Login = () => {
     try {
       await googleSignIn();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -30,7 +30,7 @@ const Login = () => {
     try {
       await githubSignIn();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
