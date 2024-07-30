@@ -1,15 +1,17 @@
+import React from 'react';
 import Home from './components/home/Home';
-import Login from './components/login/Login';
 import PageNotFound from './components/not-found/PageNotFound';
-import Register from './components/signup/Register';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AuthContextProvider } from './hooks/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './components/dashboard/Dashboard';
 import KanbanBoard from './components/dashboard/KanbanBoard';
-import Profile from './components/dashboard/Profile';
-import Reports from './components/dashboard/Reports';
-import Settings from './components/dashboard/Settings';
+
+const Login = React.lazy(() => import('./components/login/Login'));
+const Register = React.lazy(() => import('./components/signup/Register'));
+const Dashboard = React.lazy(() => import('./components/dashboard/Dashboard'));
+const Profile = React.lazy(() => import('./components/dashboard/Profile'));
+const Reports = React.lazy(() => import('./components/dashboard/Reports'));
+const Settings = React.lazy(() => import('./components/dashboard/Settings'));
 
 const App = () => {
   return (
@@ -18,38 +20,60 @@ const App = () => {
         <AuthContextProvider>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Register />} />
+            <Route
+              path="/login"
+              element={
+                <React.Suspense fallback={<>Login</>}>
+                  <Login />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <React.Suspense fallback={<>Register</>}>
+                  <Register />
+                </React.Suspense>
+              }
+            />
             <Route
               path="/dashboard"
               element={
-                <ProtectedRoute>
-                  <Dashboard Component={KanbanBoard} board={true} reports={false} settings={false} />
-                </ProtectedRoute>
+                <React.Suspense fallback={<>Dashboard</>}>
+                  <ProtectedRoute>
+                    <Dashboard Component={KanbanBoard} board={true} reports={false} settings={false} />
+                  </ProtectedRoute>
+                </React.Suspense>
               }
             />
             <Route
               path="/profile"
               element={
-                <ProtectedRoute>
-                  <Dashboard Component={Profile} board={false} reports={false} settings={false} />
-                </ProtectedRoute>
+                <React.Suspense fallback={<>Profile</>}>
+                  <ProtectedRoute>
+                    <Dashboard Component={Profile} board={false} reports={false} settings={false} />
+                  </ProtectedRoute>
+                </React.Suspense>
               }
             />
             <Route
               path="/reports"
               element={
-                <ProtectedRoute>
-                  <Dashboard Component={Reports} board={false} reports={true} settings={false} />
-                </ProtectedRoute>
+                <React.Suspense fallback={<>Reports</>}>
+                  <ProtectedRoute>
+                    <Dashboard Component={Reports} board={false} reports={true} settings={false} />
+                  </ProtectedRoute>
+                </React.Suspense>
               }
             />
             <Route
               path="/settings"
               element={
-                <ProtectedRoute>
-                  <Dashboard Component={Settings} board={false} reports={false} settings={true} />
-                </ProtectedRoute>
+                <React.Suspense fallback={<>Settings</>}>
+                  <ProtectedRoute>
+                    <Dashboard Component={Settings} board={false} reports={false} settings={true} />
+                  </ProtectedRoute>
+                </React.Suspense>
               }
             />
             <Route path="*" element={<PageNotFound />} />
