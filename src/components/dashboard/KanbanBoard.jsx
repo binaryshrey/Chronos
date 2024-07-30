@@ -4,11 +4,18 @@ import '../../styles/index.css';
 
 const KanbanBoard = () => {
   let data = [
-    { Id: 1, Status: 'Open', Summary: 'Analyze the new requirements gathered from the customer.', Type: 'Story', Priority: 'Low', Tags: 'Analyze,Customer', Estimate: 3.5, Assignee: 'Nancy Davloio', RankId: 1 },
-    { Id: 2, Status: 'InProgress', Summary: 'Fix the issues reported in the IE browser.', Type: 'Bug', Priority: 'Release Breaker', Tags: 'IE', Estimate: 2.5, Assignee: 'Janet Leverling', RankId: 2 },
-    { Id: 3, Status: 'InReview', Summary: 'Fix the issues reported by the customer.', Type: 'Bug', Priority: 'Low', Tags: 'Customer', Estimate: '3.5', Assignee: 'Steven walker', RankId: 1 },
-    { Id: 4, Status: 'Close', Summary: 'Arrange a web meeting with the customer to get the login page requirements.', Type: 'Others', Priority: 'Low', Tags: 'Meeting', Estimate: 2, Assignee: 'Michael Suyama', RankId: 1 },
-    { Id: 5, Status: 'InReview', Summary: 'Validate new requirements', Type: 'Improvement', Priority: 'Low', Tags: 'Validation', Estimate: 1.5, Assignee: 'Robert King', RankId: 1 },
+    { Id: 'Create Wireframe', Status: 'Close', Summary: 'Create wireframe for the Chronos Mobile app', Type: 'Story', Priority: 'Low', Tags: 'Create', Estimate: '3.5', Assignee: 'Chronos', RankId: 1 },
+    { Id: 'Design UI', Status: 'Close', Summary: 'Design user interface for Chronos Mobile app based on wireframes', Type: 'Story', Priority: 'Medium', Tags: 'Design', Estimate: '5.0', Assignee: 'Design Team', RankId: 2 },
+    { Id: 'Develop Authentication', Status: 'Close', Summary: 'Develop user authentication and authorization features', Type: 'Task', Priority: 'High', Tags: 'Development', Estimate: '7.0', Assignee: 'Dev Team', RankId: 3 },
+    { Id: 'API Integration', Status: 'Close', Summary: 'Integrate necessary APIs for data fetching and user interactions', Type: 'Task', Priority: 'High', Tags: 'Integration', Estimate: '6.0', Assignee: 'Dev Team', RankId: 4 },
+    { Id: 'Setup Database', Status: 'InReview', Summary: 'Set up and configure the database for storing user data and app content', Type: 'Task', Priority: 'High', Tags: 'Database', Estimate: '4.0', Assignee: 'Dev Team', RankId: 5 },
+    { Id: 'Implement Notification System', Status: 'InReview', Summary: 'Develop a system for sending notifications to users', Type: 'Task', Priority: 'Medium', Tags: 'Development', Estimate: '5.0', Assignee: 'Dev Team', RankId: 6 },
+    { Id: 'UI/UX Testing', Status: 'InProgress', Summary: 'Test the user interface and user experience for usability issues', Type: 'Task', Priority: 'Medium', Tags: 'Testing', Estimate: '5.0', Assignee: 'QA Team', RankId: 7 },
+    { Id: 'Bug Fixes', Status: 'InProgress', Summary: 'Fix bugs identified during testing phases', Type: 'Task', Priority: 'High', Tags: 'Bug Fix', Estimate: '6.0', Assignee: 'Dev Team', RankId: 8 },
+    { Id: 'Prepare Deployment', Status: 'InProgress', Summary: 'Prepare the app for deployment, including app store submission', Type: 'Task', Priority: 'Medium', Tags: 'Deployment', Estimate: '4.0', Assignee: 'Dev Team', RankId: 9 },
+    { Id: 'Marketing Strategy', Status: 'Open', Summary: 'Develop and implement a marketing strategy for the app launch', Type: 'Story', Priority: 'Medium', Tags: 'Marketing', Estimate: '5.0', Assignee: 'Marketing Team', RankId: 10 },
+    { Id: 'Create User Documentation', Status: 'Open', Summary: 'Create user documentation and help guides', Type: 'Story', Priority: 'Low', Tags: 'Documentation', Estimate: '3.0', Assignee: 'Content Team', RankId: 11 },
+    { Id: 'Monitor Post-Launch Performance', Status: 'Open', Summary: 'Monitor app performance and user feedback post-launch', Type: 'Task', Priority: 'Medium', Tags: 'Monitoring', Estimate: '3.0', Assignee: 'Support Team', RankId: 12 },
   ];
 
   React.useEffect(() => {
