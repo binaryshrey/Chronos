@@ -120,7 +120,7 @@ const Register = () => {
       <div>
         <Snackbar open={openSnack} autoHideDuration={2000} onClose={handleSnackClose}>
           <Alert onClose={handleSnackClose} severity="error" variant="filled" sx={{ width: '100%' }}>
-            Only google auth is supported as of now!
+            Google and Github sign-in are the only available options for now!
           </Alert>
         </Snackbar>
       </div>
