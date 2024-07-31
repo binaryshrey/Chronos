@@ -23,7 +23,7 @@ const App = () => {
             <Route
               path="/login"
               element={
-                <React.Suspense fallback={<>Login</>}>
+                <React.Suspense fallback={<></>}>
                   <Login />
                 </React.Suspense>
               }
@@ -31,7 +31,7 @@ const App = () => {
             <Route
               path="/signup"
               element={
-                <React.Suspense fallback={<>Register</>}>
+                <React.Suspense fallback={<></>}>
                   <Register />
                 </React.Suspense>
               }
@@ -39,7 +39,7 @@ const App = () => {
             <Route
               path="/dashboard"
               element={
-                <React.Suspense fallback={<>Dashboard</>}>
+                <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Dashboard Component={KanbanBoard} board={true} reports={false} settings={false} />
                   </ProtectedRoute>
@@ -49,7 +49,7 @@ const App = () => {
             <Route
               path="/profile"
               element={
-                <React.Suspense fallback={<>Profile</>}>
+                <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Dashboard Component={Profile} board={false} reports={false} settings={false} />
                   </ProtectedRoute>
@@ -59,7 +59,7 @@ const App = () => {
             <Route
               path="/reports"
               element={
-                <React.Suspense fallback={<>Reports</>}>
+                <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Dashboard Component={Reports} board={false} reports={true} settings={false} />
                   </ProtectedRoute>
@@ -69,7 +69,7 @@ const App = () => {
             <Route
               path="/settings"
               element={
-                <React.Suspense fallback={<>Settings</>}>
+                <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
                     <Dashboard Component={Settings} board={false} reports={false} settings={true} />
                   </ProtectedRoute>

@@ -27,7 +27,7 @@ const MarqueSection = () => {
 
   return (
     <>
-      <div className="flex justify-center mb-12 mt-12">
+      <div className="flex justify-center mb-12 mt-12 mx-4">
         <h4 className="text-center text-2xl">
           {' '}
           <span className="text-violet-600 font-semibold">Powered by</span> state of the art frameworks and libraries

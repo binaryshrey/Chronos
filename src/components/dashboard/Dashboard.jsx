@@ -57,7 +57,7 @@ const Dashboard = ({ Component, board, reports, settings }) => {
                     </nav>
                   </div>
                   <div className="flex flex-shrink-0 border-t border-gray-200 p-4">
-                    <a href="#" className="group block flex-shrink-0">
+                    <Link to="/profile" className="group block w-full flex-shrink-0">
                       <div className="flex items-center">
                         <div>
                           <img className="inline-block h-10 w-10 rounded-full" src={user.photoURL} alt="" />
@@ -67,7 +67,7 @@ const Dashboard = ({ Component, board, reports, settings }) => {
                           <p className="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
                         </div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
