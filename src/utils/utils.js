@@ -53,6 +53,9 @@ export const saveUserDataIfNewUser = async (user) => {
         }, { merge: true });
         localStorage.setItem('tasks', JSON.stringify(tasks));
         }
+        else{
+          localStorage.setItem('tasks', JSON.stringify(res[0].tasks));
+        }
     }
     catch (error) {
       console.error('Error saving user data:', error);
@@ -63,9 +66,10 @@ export const saveUserDataIfNewUser = async (user) => {
 export const queryTasks = async (user) => {
 
     try{
-
+        const email = JSON.parse(localStorage.getItem('email'));
+        
         const collection_ref = collection(db, 'users')
-        const querySnapshot = query(collection_ref, where("email", "==", user.email))
+        const querySnapshot = query(collection_ref, where("email", "==", email))
         const doc_refs = await getDocs(querySnapshot);
         const res = []
 
@@ -89,3 +93,39 @@ export const queryTasks = async (user) => {
 
 
 
+
+
+
+
+export const getDocumentIDsAndUpdate = async (newTasks) => {
+  const colRef = collection(db, 'users');
+  const email = JSON.parse(localStorage.getItem('email'));
+  let docID = "";
+
+  try {
+    // Get all documents in the collection
+    const snapshot = await getDocs(colRef);
+    snapshot.forEach((doc) => {
+      if (doc.data().email === email) {
+        docID = doc.id;
+        console.log(docID);
+      }
+    });
+
+    if (docID) {
+      // Reference the document
+      const docRef = doc(db, 'users', docID);
+
+      // Update the field with the array of objects
+      await updateDoc(docRef, {
+        tasks: newTasks
+      });
+
+      console.log('Document successfully updated!');
+    } else {
+      console.error('No document found with the provided email.');
+    }
+  } catch (error) {
+    console.error('Error getting or updating documents: ', error);
+  }
+};

@@ -19,6 +19,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const logOut = () => {
+    localStorage.clear();
     signOut(auth);
   };
 

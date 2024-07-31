@@ -2,7 +2,20 @@ import React from 'react';
 import { KanbanComponent, ColumnsDirective, ColumnDirective } from '@syncfusion/ej2-react-kanban';
 import '../../styles/index.css';
 import { UserAuth } from '../../hooks/AuthContext';
-import { queryTasks } from '../../utils/utils';
+import { queryTasks, getDocumentIDsAndUpdate } from '../../utils/utils';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Divider from '@mui/material/Divider';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import SnackAlert from '../SnackAlert';
 
 const KanbanBoard = () => {
   const { googleSignIn, user } = UserAuth();
@@ -11,6 +24,28 @@ const KanbanBoard = () => {
   const initialTasks = storedTasks ? JSON.parse(storedTasks) : [];
 
   const [taskData, setTaskData] = React.useState(initialTasks);
+  const [open, setOpen] = React.useState(false);
+  const [status, setStatus] = React.useState('Open');
+
+  const [snackbarOpen, setSnackbarOpen] = React.useState(false);
+  const handleSnackbarOpen = () => {
+    setSnackbarOpen(true);
+  };
+  const handleSnackbarClose = () => {
+    setSnackbarOpen(false);
+  };
+
+  const handleChangeStatus = (event) => {
+    setStatus(event.target.value);
+  };
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getTasks = async () => {
     let allTasks = await queryTasks(user);
@@ -59,29 +94,89 @@ const KanbanBoard = () => {
 
   const dataSetChanged = (change) => {
     if (change.requestType === 'cardChanged') {
-      const updatedTasks = taskData.map((task) => {
-        if (task.RankId === change.changedRecords.RankId) {
-          return { ...task, ...change.data };
-        }
-        return task;
-      });
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-      setTaskData(updatedTasks);
+      console.log(change.changedRecords[0]);
+      const filteredTasks = taskData.filter((task) => task.Id !== change.changedRecords[0].Id);
+      filteredTasks.push(change.changedRecords[0]);
+      localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+      setTaskData(filteredTasks);
+    } else if (change.requestType === 'cardRemoved') {
+      console.log(change);
+      const filteredTasks = taskData.filter((task) => task.Id !== change.deletedRecords[0].Id);
+      localStorage.setItem('tasks', JSON.stringify(filteredTasks));
+      setTaskData(filteredTasks);
     }
+  };
+
+  const addNewTaskSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const formJson = Object.fromEntries(formData.entries());
+    const title = formJson.title;
+    const summary = formJson.summary;
+    const highestRankId = taskData.reduce((max, task) => Math.max(max, task.RankId), -Infinity);
+    const newTask = { Id: title, Status: status, Summary: summary, Type: 'Story', Priority: 'Low', Tags: 'Create', Estimate: '3.5', Assignee: 'Chronos', RankId: highestRankId + 1 };
+    const newTaskList = [...taskData, newTask];
+    localStorage.setItem('tasks', JSON.stringify(newTaskList));
+    setTaskData(newTaskList);
+    handleClose();
+  };
+
+  const saveToCloud = (user) => {
+    getDocumentIDsAndUpdate(taskData);
+    handleSnackbarOpen();
   };
 
   return (
     <div>
-      <div className="App">
-        <KanbanComponent id="kanban" keyField="Status" enablePersistence={true} dataSource={taskData} dataSourceChanged={dataSetChanged} cardSettings={{ contentField: 'Summary', headerField: 'Id' }}>
-          <ColumnsDirective>
-            <ColumnDirective headerText="To Do" keyField="Open" />
-            <ColumnDirective headerText="In Progress" keyField="InProgress" />
-            <ColumnDirective headerText="In Review" keyField="InReview" />
-            <ColumnDirective headerText="Done" keyField="Close" />
-          </ColumnsDirective>
-        </KanbanComponent>
+      <div className="flex justify-between">
+        <button className="text-gray-600 bg-gray-100 py-1 px-2 rounded-sm text-sm mx-2.5 mb-4" onClick={() => handleClickOpen()}>
+          Add New Task
+        </button>
+        <button className="text-gray-600 bg-gray-100 py-1 px-2 rounded-sm text-sm mx-2.5 mb-4" onClick={() => saveToCloud()}>
+          Save To Cloud
+        </button>
       </div>
+      <KanbanComponent id="kanban" keyField="Status" dataSource={taskData} dataSourceChanged={dataSetChanged} cardSettings={{ contentField: 'Summary', headerField: 'Id' }}>
+        <ColumnsDirective>
+          <ColumnDirective headerText="To Do" keyField="Open" />
+          <ColumnDirective headerText="In Progress" keyField="InProgress" />
+          <ColumnDirective headerText="In Review" keyField="InReview" />
+          <ColumnDirective headerText="Done" keyField="Close" />
+        </ColumnsDirective>
+      </KanbanComponent>
+
+      <>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          PaperProps={{
+            component: 'form',
+            onSubmit: addNewTaskSubmit,
+          }}
+        >
+          <DialogTitle>Add New Task</DialogTitle>
+          <Divider />
+          <DialogContent>
+            <TextField fullWidth required label="Title" id="title" name="title" defaultValue="New Task" size="small" sx={{ marginTop: '20px', marginBottom: '10px' }} />
+            <InputLabel id="demo-select-small-label" className="mt-2 mb-1">
+              Status
+            </InputLabel>
+            <Select value={status} label="Status" size="small" className="w-full mb-10" onChange={handleChangeStatus}>
+              <MenuItem value="Open">Open</MenuItem>
+              <MenuItem value="InProgress">InProgress</MenuItem>
+              <MenuItem value="InReview">InReview</MenuItem>
+              <MenuItem value="Done">Done</MenuItem>
+            </Select>
+            <TextField fullWidth multiline maxRows={4} label="Summary" id="summary" name="summary" size="small" sx={{ marginBottom: '20px' }} />
+          </DialogContent>
+          <Divider />
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button type="submit">Save</Button>
+          </DialogActions>
+        </Dialog>
+        <SnackAlert open={snackbarOpen} message="Saved to cloud successfully" severity="success" onClose={handleSnackbarClose} />
+      </>
     </div>
   );
 };
